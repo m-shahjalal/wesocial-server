@@ -5,8 +5,6 @@ const User = require('../models/User');
 module.exports = [
 	body('name').exists().withMessage('name is required'),
 	body('email')
-		.exists()
-		.withMessage('email is required')
 		.isEmail()
 		.withMessage('should enter a valid email address')
 		.custom(async (value) => {

@@ -8,8 +8,8 @@ user.createUser = async (req, res, next) => {
 };
 
 user.login = async (req, res, next) => {
-	passport.authenticate('login', async (err, user, { success }) => {
-		if (!success) return next(err);
+	passport.authenticate('login', async (err, user) => {
+		if (err || !user) return next(err);
 		try {
 			req.login(user, { session: false }, async (error) => {
 				if (error) return next(error);
@@ -22,6 +22,7 @@ user.login = async (req, res, next) => {
 				return res.json({ name: user.name, email: user.email, token });
 			});
 		} catch (error) {
+			console.log(error)
 			return next(error);
 		}
 	})(req, res, next);
