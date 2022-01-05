@@ -15,7 +15,6 @@ module.exports = (app) => {
 	});
 
 	app.use((error, req, res, next) => {
-		console.log(error);
 		if (error.status === 404) {
 			logger.error(error.message || error.error);
 			res.json({ error: error.message, status: error.status });
@@ -24,7 +23,7 @@ module.exports = (app) => {
 				error: error.message || error || 'internal server error',
 				status: error.status || 500,
 			});
-			logger.error(error.message || 'internal server error');
+			logger.error(error.message || error  || 'internal server error');
 		}
 		next();
 	});

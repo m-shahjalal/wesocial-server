@@ -20,6 +20,7 @@ strategy.signup = new localStrategy(
 			});
 			return done(null, user);
 		} catch (error) {
+			console.log(error);
 			done(error);
 		}
 	}
