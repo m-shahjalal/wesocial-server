@@ -15,6 +15,7 @@ module.exports = (app) => {
 	});
 
 	app.use((error, req, res, next) => {
+		console.log(error)
 		if (error.status === 404) {
 			logger.error(error.message || error.error);
 			res.json({ error: error.message, status: error.status });
