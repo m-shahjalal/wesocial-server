@@ -21,7 +21,7 @@ post.getSinglePost = async (req, res, next) => {
 	}
 };
 
-post.createPost = (req, res, next) => {
+post.createPost = async (req, res, next) => {
 	try {
 		const cretePost = await Post.create({ content: req.body.content });
 		res.json({ cretePost });
@@ -30,7 +30,7 @@ post.createPost = (req, res, next) => {
 	}
 };
 
-post.updatePost = (req, res, next) => {
+post.updatePost = async (req, res, next) => {
 	const { id } = req.params;
 	const obj = { content: req.body.content };
 	try {
@@ -45,7 +45,7 @@ post.updatePost = (req, res, next) => {
 	}
 };
 
-post.thumbCounter = (req, res, next) => {
+post.thumbCounter = async (req, res, next) => {
 	const { id } = req.params;
 	const state = req.body.state;
 	const user = req.body.user;
@@ -72,7 +72,7 @@ post.thumbCounter = (req, res, next) => {
 	}
 };
 
-post.createComment = (req, res, next) => {
+post.createComment = async (req, res, next) => {
 	const { id } = req.params;
 	const { name, comment, user } = req.body;
 	try {
@@ -92,7 +92,7 @@ post.createComment = (req, res, next) => {
 	}
 };
 
-post.deletePost = (req, res, next) => {
+post.deletePost = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		const post = await Post.findOneAndDelete({ _id: id });

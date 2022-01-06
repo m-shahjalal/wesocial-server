@@ -1,19 +1,20 @@
 const express = require('express');
+const passport = require('passport');
 const {
 	getAllPosts,
 	getSinglePost,
 	createPost,
 	updatePost,
 	deletePost,
-    createComment,
-    thumbCounter,
+	createComment,
+	thumbCounter,
 } = require('../controllers/post');
 
 const router = express.Router();
 
 router.get('/', getAllPosts);
 router.get('/:id', getSinglePost);
-router.post('/', passport.authenticate('jwt', { session: false }), createPost);
+router.post('/', createPost);
 router.put(
 	'/:id',
 	passport.authenticate('jwt', { session: false }),
